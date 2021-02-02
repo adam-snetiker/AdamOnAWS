@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Adam on AWS | Home</title>
+<link rel="stylesheet" type="text/css" href="css/styles.css" />
+</head>
+
+<body>
+    <div class="page-container">
+        <div id="title-bar">adam <span class="yellow-text">snetiker</span><br><span class="small-teal-text">Solutions Architect Portfolio</span></div>
+            <img id="header-image" src="images/website-header.png">
+        <div class="content-container">
+            <h1>Why Build This Website?</h1>
+            <br>
+            <p>This website serves three purposes: it's a place to document my journey toward becoming a Solutions Architect, a portfolio that showcases my ability to apply what I'm learning as I prepare for various certifications, and a project that will grow in complexity and prove to employers that I have practical knowledge and hands-on experience that's similar to what I'd gain in a full-time role. I am using a number of different web services and this site is fully-contained in the AWS cloud. 
+            <br><br>
+            As I expand my skill set and increase the complexity of my projects, I'll continue to update this website to demonstrate my ability to architect solutions using AWS and its many valuable service offerings.
+            <br><br>
+            Below is an ongoing digest of micro-tasks I have completed, grouped by service.</p>
+ 
+            <p class="service"><strong>Amazon Route 53</strong></p>
+            <ul>
+                <li>Registered <em>adamonaws.com</em> using the domain registration feature.</li>
+                <li>Added <strong class="yellow-text">Simple Routing</strong> A records for the domain and sub-domain.
+                <li>Edited A records to point to the <strong class="yellow-text">CloudFront distribution</strong> instead of the S3 bucket.</li>
+                <li>Generated a <strong class="yellow-text">CNAME</strong> record, allowing AWS Certificate Manager to update the DNS configuration to validate it.
+            </ul>
+        
+            <p class="service">Amazon Simple Storage Service (S3)</p>
+            <ul>
+                <li>Created a bucket for the root domain called <em>adamonaws.com</em> that is configured to host this static website.</li>
+                <li>Created a bucket for the sub-domain called <em>www.adamonaws.com</em> that is configured to redirect to the root domain.</li>
+                <li>Created a bucket called <em>logs.adamonaws.com</em> to store website and CloudFront logs and turned on website logging in the domain properties.</li>
+                <li>Defined and attached a <strong class="yellow-text">bucket policy</strong> that grants read-only access to anonymous users (all website visitors that don't have AWS accounts under my root account).</li>
+                <li>Enabled <strong class="yellow-text">bucket versioning</strong> and created a <strong class="yellow-text">lifecycle rule</strong> to transition previous versions of objects to the <em>One Zone-IA</em> storage class after 30 days.</li>
+            </ul>
+       
+            <p class="service">HTML &amp; CSS</p>
+            <ul>
+                <li>Coded this page from scratch using <strong class="yellow-text">Brackets</strong>(ongoing) and uploaded it to the adamonaws.com folder as <em>index.html</em>.</li> 
+                <li>Created a <em>css</em> folder in the <em>adamonaws.com</em> bucket and uploaded <em>styles.css</em>.</li>
+                <li>Created an <em>images</em> folder in the <em>adamonaws.com</em> bucket and uploaded <em>website-header.png</em>.</li>
+                <li>Spent a few minutes cleaning up code so the formatting is consistent.</li>
+            </ul>
+        
+            <p class="service">Amazon CloudFront</p>
+            <ul>
+                <li>Created a new distribution.</li>
+                <li>Specified <em>adamonaws.com</em> and the subdomain <em>www.adamonaws.com</em> as alternate domain names instead of the default <strong class="yellow-text">S3 website endpoint</strong>.</li>
+                <li>Invalidated the cached versions of this <em>index.html</em> file, <em>styles.css</em>, and <em>website-header.png</em> in the CloudFront distribution settings so visitors would get the latest version faster.</li>
+                <li>Changed the CloudFront <strong class="yellow-text">price class</strong> to edge locations in the United States, Canada, and Europe to save money because I don't need world-wide distribution for this small project. </li>
+                <li>Created a new <strong class="yellow-text">cache policy</strong> that sets the <em>Minimum TTL</em> to 300 seconds (5 minutes) and <em>Maximum TTL</em> to 3600 seconds (1 hour), then applied this policy as the default behavior for the origin. I want the latest versions to be retrieved as often as possible because I'm making many changes to this site very frequently.</li>
+            </ul>
+            
+            <p class="service">AWS Certificate Manager</p>
+            <ul>
+                <li>Requested a <strong class="yellow-text">custom SSL certificate</strong> for the domain name <em>adamonaws.com</em> and subdomain <em>www.adamonaws.com</em></li>
+                <li>Turned on <strong class="yellow-text">standard logging</strong> to save logs in a new folder within the prefix <em>cloudfront-logs/</em> in the <em>logs.adamonaws.com</em> bucket.</li>
+            </ul>
+    
+            <p class="service">AWS Budgets</p>
+            <p>I received an email from AWS because during my <strong class="yellow-text">Certified Cloud Practitioner</strong> training, I set a <strong class="yellow-text">billing alert</strong> so I'd be notified when costs pass a threshold of $10, and it worked. The domain name I purchased through Route 53 was $12, so the notification was successful.
+            </p>
+        
+            <p class="service">Amazon Simple Email Service (SES)</p>
+            <ul>
+                <li>Verified the new domain <em>adamonaws.com</em> and generated <strong class="yellow-text">DomainKeys Identified Mail (DKIM)</strong> settings to prove that all emails sent from this domain are authentic.</li>
+                <li>Set up mail FROM domain as <em>mail.adamonaws.com</em>, with <em>amazonses.com</em> as the default setting if no MX record is found. Published updated <strong class="yellow-text">MX</strong> and <strong class="yellow-text">SPF</strong> records in Route 53.</li>
+                <li>Created a new email address, <em>adam@adamonaws.com</em>.</li>
+                <li>Set up an <strong class="yellow-text">email receipt rule</strong> by configuring an <strong class="yellow-text">action</strong> that sends emails to an <strong class="yellow-text">SNS topic</strong> called <em>adamonaws_emails</em>.</li>
+            </ul>
+        
+            <p class="service">Amazon Simple Notification Service (SNS)</p>
+            <ul>
+                <li>Created subscription to <em>adamonaws_emails</em> topic that I created using AWS Simple Email Service.</li>
+                <li>Selected the <strong class="yellow-text">EMAIL</strong> protocol and set the endpoint as my personal email address. This allows me to verify the new email address by forwarding the verification to the SNS topic, which sends the email to my Gmail inbox. To change it, edit the subscription in the SNS console.</li>
+                <li>Requested <strong class="yellow-text">production access</strong> using the SES console so that I can send emails from my domain email address for networking purposes. All new email accounts begin in the sandbox environment, which means they can only send emails to addresses that have been verified through the SES console.</li>
+            <li>Configured SNS to send bounce and complaint notifications to the <em>adamonaws_emails</em> topic. </li>
+            </ul>
+            
+            <p class="service">Git &amp; GitHub</p>
+            <ul>
+                <li>Used MacOS Terminal to create a local repository.</li>
+                <li>Created a <a href="github.com/adam-snetiker/AdamOnAWS" target="_blank">GitHub repository</a> for this project.</li>
+                <li>Added the remote origin to the local machine so changes can be pushed to GitHub.</li>
+                <li>Created and updated README.md file.</li>
+            </ul>
+        </div>    
+    </div>
+</body>
+</html>
