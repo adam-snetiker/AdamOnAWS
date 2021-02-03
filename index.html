@@ -87,14 +87,7 @@
                 <li>Created and updated README.md file.</li>
                 <li>Attempted to add all files and pushed them to the remote repository. Since I edited the README file remotely, I came across syncing errors and had to research a solution.</li>
                 <li>Had to perform a pull because I edited the README.md file on the website, not locally. Once I did that, I was able to add and push everything to GitHub successfully.</li>
-                <li>Implemented a <strong class="yellow-text">GitHub Action</strong> called <em>uploadS3</em> from the GitHub Marketplace to automatically upload files to S3 instead of manually adding them every time I make a change.</li>
-                <li>Created a personal access token to use on GitHub command line. As of August 2021, passwords will no longer be used.</li>
-                <li>There appears to be an issue with Ubuntu 20.4, so I updated the version to 18.04 in <em>uploads3.yaml</em>.</li>
-                <li>Updated workflow action to use my own repository rather than the creator's. Repository should be <em>adam-snetiker/AdamOnAWS</em>.</li>
-                <br><br><strong>Note:</strong>Each time I change the workflow I have to pull it back down because it was done on GitHub.com rather than locally.
-                <li>Corrected branch name, changing it from <em>master</em> to <em>main</em>. Master is no longer a branch name on GitHub according to the documentation.</li>
-                <li>Removed first item, actions.yaml, from the list because it doesn't exist. Hopefully that fixes the problem and the workflow will be successful.</li>
-                <li>Changed 'with' to 'env' in GitHub Actions to set environmental variables.</li>
+                <li>Implemented a <strong class="yellow-text">GitHub Action</strong> from the marketplace that automates the upload of <em>index.html</em> to my S3 bucket <em>adamonaws.com</em> whenever a change to this page is made and pushed to the repository.</li>
             </ul>
         </div>    
     </div>
