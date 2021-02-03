@@ -1,4 +1,4 @@
-# inside .github/workflows/uploads3.yml
+# inside .github/workflows/your-action.yml
 name: Add File to S3 Bucket
 on: push
 
