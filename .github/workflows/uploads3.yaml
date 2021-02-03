@@ -1,7 +1,7 @@
 # inside .github/workflows/action.yml
 
 - name: S3 Upload
-  uses: koraykoska/s3-upload-github-action@0.1.3
+  uses: koraykoska/s3-upload-github-action@0.1.3 
 
 on: push
 
