@@ -88,6 +88,7 @@
                 <li>Attempted to add all files and pushed them to the remote repository. Since I edited the README file remotely, I came across syncing errors and had to research a solution.</li>
                 <li>Had to perform a pull because I edited the README.md file on the website, not locally. Once I did that, I was able to add and push everything to GitHub successfully.</li>
                 <li>Implemented a <strong class="yellow-text">GitHub Action</strong> from the marketplace that automates the upload of any file in the repository by syncing it with my S3 bucket <em>adamonaws.com</em> whenever a change to this page is made and pushed. Updated action to use the latest version from Jake Jarvis.</li>
+                <li>AWS_S3_BUCKET is not being recognized, so I <strong class="yellow-text">opened an issue</strong> with the developer.</li>
             </ul>
             
             <p class="service">AWS Identity and Access Management</p>
@@ -100,7 +101,15 @@
             <ul>
                 <li>Created a symmetric <strong class="yellow">customer managed key</strong> by enabling encryption for the S3 bucket <em>adamonaws.com</em></li>
             </ul>
+            
+            <p class="service">AWS Command Line Interface (CLI)</p>
+            <ul>
+                <li>Installed the AWS CLI v2.1.23 using macOS terminal.</li></ul>
+                <li>Updated access key after deleting the old one as directed by AWS support using <strong class="yellow-text">aws configure</strong> command.</li>
+                <li>Set up <strong class="yellow-text">S3 sync</strong> to sync all website files with the s3 bucket instead of using GitHub actions. I'll try that again when the 'bucket not set' issue is resolved by the developer.</li>
+                
         </div>    
+    
     </div>
 </body>
 </html>
