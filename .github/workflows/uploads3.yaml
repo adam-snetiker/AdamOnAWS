@@ -19,4 +19,4 @@ jobs:
           S3_BUCKET: ${{ secrets.adamonaws.com }}
           S3_KEY: ${{ secrets.adamonaws-key }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AKIA3AATCJDSPEAT7UPE }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.rrS1KHA41UuHWLkBSMZQW1bIJOlGefv1Se9lsTs/ }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.rrS1KHA41UuHWLkBSMZQW1bIJOlGefv1Se9lsTs }}
