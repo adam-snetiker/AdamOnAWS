@@ -1,13 +1,12 @@
-name: Upload to S3
-
-on: [push]
-
+name: Upload to Amazon S3
+on: push
 jobs:
-  upload:
+  uploadToAmazonS3:
+    name: UploadToAmazonS3
     runs-on: ubuntu-18.04
     steps:
       - uses: adam-snetiker/AdamOnAWS@main
-        with:
+        env:
           aws_key_id: ${{ secrets.AKIA3AATCJDSE6WZLNFP }}
           aws_secret_access_key: ${{ secrets.aTs8wenGNAcVKaqvCooiXZ8A0VGUxb0FZrSwnrua}}
           aws_bucket: ${{ secrets.adamonaws.com }}
