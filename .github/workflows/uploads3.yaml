@@ -6,7 +6,6 @@ jobs:
   upload:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@main
       - uses: adam-snetiker/AdamOnAWS@main
         with:
           aws_key_id: ${{ secrets.AKIA3AATCJDSE6WZLNFP }}
