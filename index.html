@@ -15,7 +15,7 @@
             <br>
             <p>This website serves three purposes: it's a place to document my journey toward becoming a Solutions Architect, a portfolio that showcases my ability to apply what I'm learning as I prepare for various certifications, and a project that will grow in complexity and prove to employers that I have practical knowledge and hands-on experience that's similar to what I'd gain in a full-time role. I am using a number of different web services and this site is fully-contained in the AWS cloud. 
             <br><br>
-            As I expand my skill set and increase the complexity of my projects, I'll continue to update this website to demonstrate my ability to architect solutions using AWS and its many valuable service offerings.
+            As I expand my skill set and projects become more involved, I'll continue to update this website to demonstrate my ability to architect solutions using AWS and its many valuable service offerings.
             <br><br>
             Below is an ongoing digest of micro-tasks I have completed, grouped by service, language, or tool.</p>
  
@@ -90,6 +90,8 @@
                 <li>Implemented a <strong class="yellow-text">GitHub Action</strong> from the marketplace that automates the upload of any file in the repository by syncing it with my S3 bucket <em>adamonaws.com</em> whenever a change to this page is made and pushed. Updated action to use the latest version from Jake Jarvis.</li>
                 <li>AWS_S3_BUCKET is not being recognized, so I <strong class="yellow-text">opened an issue</strong> with the developer.</li>
                 <li>Disabled the workflow while waiting for issue to be resolved.</li>
+                <li>Installed the new <strong class="yellow-text">GitHub Command Line Interface (CLI)</strong>.</li>
+                <li>Created SSH config file and added it to GitHub.</li>
             </ul>
             
             <p class="service">AWS Identity and Access Management</p>
@@ -105,11 +107,19 @@
             
             <p class="service">AWS Command Line Interface (CLI)</p>
             <ul>
-                <li>Installed the AWS CLI v2.1.23 using macOS terminal.</li></ul>
+                <li>Installed the AWS CLI v2.1.23 using macOS terminal.</li>
                 <li>Updated access key after deleting the old one as directed by AWS support using <strong class="yellow-text">aws configure</strong> command.</li>
                 <li>Set up <strong class="yellow-text">S3 sync</strong> to sync <em>index.html</em> file with the S3 bucket.</li>
-                <li>Repeated S3 sync command to sync contents of css and images folders with corresponding directories in S3.</li>
+                <li>Repeated S3 sync command to sync contents of css and images folders with corresponding directories in S3. I'm now looking into <strong class="yellow-text">Circle CI</strong> because the AWS CLI doesn't actually monitor files, which means I have to run the command manually every time I make a change. That's only slightly better than manually uploading it in the S3 console.</li>
+                <li>Added <strong class="yellow-text">--exclude</strong> flag to exclude github folders <em>.git</em>, <em>.github</em>, <em>.github/workflows</em>, and <em>README.md</em>.</li>
+            </ul>
                 
+            <p class="service">CircleCI</p>
+            <ul>
+                <li>Set up a project in CircleCI and read the tutorial.</li>
+                <li>Created <em>.circleci</em> directory and uploaded <em>config.yml</em>. CirlceCI now successfully connects to my project.</li>
+                <li>Learned to connect to jobs through SSH from the command line to troubleshoot errors, navigate the job, and look at results.</li>
+            </ul>
         </div>    
     
     </div>
