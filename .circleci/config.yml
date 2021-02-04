@@ -8,17 +8,14 @@ jobs:
       - image: 'cimg/python:3.6'
     steps:
       - checkout
-      - run: mkdir bucket && echo "lorem ipsum" > bucket/build_asset.txt
       - aws-s3/sync:
           arguments: |
             --acl public-read \
             --cache-control "max-age=3600"
-          aws-access-key-id: AKIA3AATCJDSPEAT7UPE
-          aws-region: us-west-1
-          aws-secret-access-key: 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
-          from: bucket
-          to: 's3://adamonaws.com'
-      - aws-s3/copy:
-          arguments: '--dryrun'
-          from: bucket/build_asset.txt
-          to: 's3://adamonaws.com'
+          aws-access-key-id:  ${{ secrets.AKIA3AATCJDSPEAT7UPE }}
+          aws-region: 'us-west-1'
+          aws-secret-access-key: ${{ secrets.rrS1KHA41UuHWLkBSMZQW1bIJOlGefv1Se9lsTs }}
+          from: './index.html'
+          to: 's3://adamonaws.com/index.html'
+          
+      
