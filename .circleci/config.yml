@@ -12,10 +12,18 @@ jobs:
           arguments: |
             --acl public-read \
             --cache-control "max-age=3600"
-          aws-access-key-id:  ${secrets.AKIA3AATCJDSPEAT7UPE}
-          aws-region: 'us-west-1'
-          aws-secret-access-key: ${secrets.rrS1KHA41UuHWLkBSMZQW1bIJOlGefv1Se9lsTs}
+          aws-access-key-id:  AWS_ACCESS_KEY
+          aws-region: AWS_REGION
+          aws-secret-access-key: AWS_SECRET_KEY
           from: './index.html'
           to: 's3://adamonaws.com/index.html'
+
+workflows:
+  workflow:
+    jobs:
+      - build:
+        aws-access-key-id: 'AKIA3AATCJDSPEAT7UPE'
+        aws-region: 'us-west-1'
+        aws-secret-access-key: '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'
           
       
