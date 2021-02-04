@@ -1,12 +1,10 @@
-version: 2.1
-orbs:
-  aws-s3: circleci/aws-s3@2.0.0
 jobs:
   build:
     docker:
       - image: 'cimg/python:3.6'
     steps:
       - checkout
+      - run: mkdir bucket && cat index.html > bucket/build_asset.txt
       - aws-s3/sync:
           arguments: |
             --acl public-read \
@@ -16,3 +14,6 @@ jobs:
           aws-secret-access-key: rrS1KHA41UuHWLkBSMZQW1bIJOlGefv1Se9lsTs/
           from: ./index.html
           to: 's3://adamonaws.com/index.html'
+orbs:
+  aws-s3: circleci/aws-s3@x.y
+version: 2.1
