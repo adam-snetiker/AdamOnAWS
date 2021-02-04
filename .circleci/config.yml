@@ -12,9 +12,9 @@ jobs:
           arguments: |
             --acl public-read \
             --cache-control "max-age=3600"
-          aws-access-key-id:  ${{ secrets.AKIA3AATCJDSPEAT7UPE }}
+          aws-access-key-id:  ${secrets.AKIA3AATCJDSPEAT7UPE}
           aws-region: 'us-west-1'
-          aws-secret-access-key: ${{ secrets.rrS1KHA41UuHWLkBSMZQW1bIJOlGefv1Se9lsTs }}
+          aws-secret-access-key: ${secrets.rrS1KHA41UuHWLkBSMZQW1bIJOlGefv1Se9lsTs}
           from: './index.html'
           to: 's3://adamonaws.com/index.html'
           
