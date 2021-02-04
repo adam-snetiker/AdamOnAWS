@@ -17,13 +17,5 @@ jobs:
           aws-secret-access-key: AWS_SECRET_KEY
           from: './index.html'
           to: 's3://adamonaws.com/index.html'
-
-workflows:
-  workflow:
-    jobs:
-      - build:
-        aws-access-key-id: ${{ secrets.AKIA3AATCJDSPEAT7UPE }}
-        aws-region: 'us-west-1'
-        aws-secret-access-key: ${{ secrets.rrS1KHA41UuHWLkBSMZQW1bIJOlGefv1Se9lsTs/ }}
           
       
