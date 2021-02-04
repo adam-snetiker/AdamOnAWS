@@ -22,8 +22,8 @@ workflows:
   workflow:
     jobs:
       - build:
-        aws-access-key-id: 'AKIA3AATCJDSPEAT7UPE'
+        aws-access-key-id: ${{ secrets.AKIA3AATCJDSPEAT7UPE }}
         aws-region: 'us-west-1'
-        aws-secret-access-key: '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'
+        aws-secret-access-key: ${{ secrets.rrS1KHA41UuHWLkBSMZQW1bIJOlGefv1Se9lsTs/ }}
           
       
