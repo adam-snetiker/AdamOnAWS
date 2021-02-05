@@ -7,7 +7,7 @@ jobs:
           profile-name: adamsnetiker
   build:
     docker:
-      - image: 'cimg/python:3.6'
+      - image: 'aws-cli/2.1.22'
     steps:
       - checkout
       - run: aws s3 sync . s3://adamonaws.com --exclude "*" --include "*.html"
