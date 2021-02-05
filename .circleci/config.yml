@@ -1,22 +1,20 @@
+jobs:
+  build:
+    docker:
+      - image: 'cimg/python:3.6'
+    steps:
+      - checkout
+      - run: mkdir bucket && echo "lorem ipsum" > bucket/build_asset.txt
+      - aws-s3/sync:
+          arguments: |
+            --acl public-read \
+            --cache-control "max-age=3600"
+          from: bucket
+          to: 's3://adamonaws.com'
+      - aws-s3/copy:
+          arguments: '--dryrun'
+          from: bucket/build_asset.txt
+          to: 's3://adamonaws.com'
+orbs:
+  aws-s3: circleci/aws-s3@x.y
 version: 2.1
-jobs: # a basic unit of work in a run
-  build: # runs not using `Workflows` must have a `build` job as entry point
-    macos:  # indicate that we are using the macOS executor
-      xcode: 11.3.0 # indicate our selected version of Xcode
-    steps: # a series of commands to run
-      - checkout  # pull down code from your version control system.
-      - run:
-          # run our tests using xcode's cli tool `xcodebuild`
-          name: Run Unit Tests
-          command: xcodebuild test -scheme circleci-demo-macos
-      - run:
-          # build our application
-          name: Build Application
-          command: xcodebuild
-      - run:
-          # compress Xcode's build output so that it can be stored as an artifact
-          name: Compress app for storage
-          command: zip -r app.zip build/Release/circleci-demo-macos.app
-      - store_artifacts: # store this build output. Read more: https://circleci.com/docs/2.0/artifacts/
-          path: app.zip
-          destination: app
