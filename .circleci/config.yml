@@ -5,12 +5,14 @@ jobs:
       - checkout
       - aws-cli/setup:
           profile-name: adamsnetiker
+      - run: aws s3 sync . s3://adamonaws.com --exclude "*" --include "*.html"
+      - run: aws s3 sync ./css s3://adamonaws.com/css --include "*.css"
+      - run: aws s3 sync ./images s3://adamonaws.com --include "*.jpg" --include "*.png"
   build:
     docker:
-      - image: 'aws-cli/2.1.22'
+      - image: 'cimg/python:3.6'
     steps:
       - checkout
-      - run: aws s3 sync . s3://adamonaws.com --exclude "*" --include "*.html"
       - aws-s3/sync:
           arguments: |
             --acl public-read \
