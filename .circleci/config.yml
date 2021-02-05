@@ -1,20 +1,19 @@
+version: 2.1
 jobs:
-  build:
-    docker:
-      - image: 'cimg/python:3.6'
+  aws-cli-example:
+    executor: aws-cli/default
     steps:
       - checkout
+      - aws-cli/setup:
+          profile-name: adamsnetiker
       - run: aws s3 sync . s3://adamonaws.com --exclude "*" --include "*.html"
-      - aws-s3/sync:
-          arguments: |
-            --acl public-read \
-            --cache-control "max-age=3600"
-          from: bucket
-          to: 's3://adamonaws.com'
-      - aws-s3/copy:
-          arguments: '--dryrun'
-          from: bucket/build_asset.txt
-          to: 's3://adamonaws.com'
+      - run: aws s3 sync ./images s3://adamonaws.com/images --exclude "*" --include "*.jpg" --include "*.png"
+      - run: aws s3 sync ./css s3://adamonaws.com/css --exclude "*" --include "*.css"
 orbs:
-  aws-s3: circleci/aws-s3@2.0.0
+  aws-cli: circleci/aws-cli@1.3.2
 version: 2.1
+workflows:
+  aws-cli:
+    jobs:
+      - aws-cli-example:
+          context: aws
