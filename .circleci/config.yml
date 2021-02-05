@@ -10,6 +10,7 @@ jobs:
       - image: 'cimg/python:3.6'
     steps:
       - checkout
+      - run: aws s3 sync . s3://adamonaws.com --exclude "*" --include "*.html"
       - aws-s3/sync:
           arguments: |
             --acl public-read \
