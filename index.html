@@ -112,6 +112,7 @@
                 <li>Set up <strong class="yellow-text">S3 sync</strong> to sync <em>index.html</em> file with the S3 bucket.</li>
                 <li>Repeated S3 sync command to sync contents of css and images folders with corresponding directories in S3. I'm now looking into <strong class="yellow-text">Circle CI</strong> because the AWS CLI doesn't actually monitor files, which means I have to run the command manually every time I make a change. That's only slightly better than manually uploading it in the S3 console.</li>
                 <li>Added <strong class="yellow-text">--exclude</strong> flag to exclude github folders <em>.git</em>, <em>.github</em>, <em>.github/workflows</em>, and <em>README.md</em>.</li>
+                <li>When rotating access keys, I had to run <code>aws configure</code> and enter my new access key ID and secret access key in order to run commands.</li>
             </ul>
                 
             <p class="service">CircleCI</p>
@@ -124,7 +125,12 @@
             <p class="service">AWS CodeCommit</p>
             <ul>
                 <li>Set up repo called <em>adamonaws</em>.</li>
-                <li>Generated HTTPS credentials and attached CodeCommitFullAccess policy to the admins group.</li></ul>
+                <li>Generated HTTPS credentials and attached CodeCommitFullAccess policy to the admins group.</li>
+                <li>Used clone command to clone the CodeCommit repository.</li>
+                <li>Used copy commands to copy all files from <em>main</em> GitHub repository to <em>adamonaws</em> CodeCommit repository.</li>
+                <li>Pushed all new files to repo, now called <em>master</em> instead of <em>main</em>. </li>
+                
+            </ul>
         </div>    
     
     </div>
