@@ -110,7 +110,7 @@
                 <li>Updated access key after deleting the old one as directed by AWS support using <strong class="yellow-text">aws configure</strong> command.</li>
                 <li>Set up <strong class="yellow-text">S3 sync</strong> to sync <em>index.html</em> file with the S3 bucket.</li>
                 <li>Repeated S3 sync command to sync contents of css and images folders with corresponding directories in S3. I'm now looking into <strong class="yellow-text">Circle CI</strong> because the AWS CLI doesn't actually monitor files, which means I have to run the command manually every time I make a change. That's only slightly better than manually uploading it in the S3 console.</li>
-                <li>Added <strong class="yellow-text">--exclude '.git/*'</strong> to exclude github folders <em>.git</em>, <em>.github</em>, <em>.github/workflows</em>, and <em>README.md</em>.</li>
+                <li>Added <strong class="yellow-text">--exclude</strong> and <strong class="yellow-text">--delete</strong> flags to exclude github workflow folders and make sure only files in my local repository are in the S3 bucket.
             </ul>
                 
             <p class="service">CircleCI</p>
