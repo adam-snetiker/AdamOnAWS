@@ -112,13 +112,6 @@
                 <li>Repeated S3 sync command to sync contents of css and images folders with corresponding directories in S3. I'm now looking into <strong class="yellow-text">Circle CI</strong> because the AWS CLI doesn't actually monitor files, which means I have to run the command manually every time I make a change. That's only slightly better than manually uploading it in the S3 console.</li>
                 <li>Added <strong class="yellow-text">--exclude</strong> and <strong class="yellow-text">--delete</strong> flags to exclude <em>.github/workflow</em> and make sure only files in my local repository are in the S3 bucket.
             </ul>
-                
-            <p class="service">CircleCI</p>
-            <ul>
-                <li>Set up a project in CircleCI and read the tutorial.</li>
-                <li>Created <em>.circleci</em> directory and uploaded <em>config.yml</em>. CirlceCI now successfully connects to my project.</li>
-                <li>Learned to connect to jobs through SSH from the command line to troubleshoot errors, navigate the job, and look at file contents using <em>cat</em>.</li>
-            </ul>
             
             <p class="service">AWS CodeCommit</p>
             <ul>
