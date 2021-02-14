@@ -1,0 +1,53 @@
+/* Digital Cloud Training Labs */
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Adam on AWS | Digital Cloud Training Labs</title>
+<link rel="stylesheet" type="text/css" href="css/styles.css" />
+</head>
+<body>
+<div class="page-container">
+    <div id="title-bar">adam <span class="yellow-text">snetiker</span><br><span class="small-teal-text">Solutions Architect Portfolio</span></div>
+    <img id="header-image" src="images/website-header.png">
+    <div class="content-container">
+    <h1>Digital Cloud Training</h1>
+    <h2>Hands-on Lab Exercises</h2>
+        <p class="service">Lab 1: Identity &amp; Access Management (IAM)</p>
+        <ul>
+        <li>Created a new IAM user called <em>adamdtc</em></li>
+        <li>Created a password so I can log in to this account through the AWS Management Console.</li>
+        <li>Generated an <strong class="yellow-text">access key ID</strong> and <strong class="yellow-text">secret access key</strong> for this account.</li>
+        <li>Added new user to a group called <em>Training</em> so I can grant access to the minimal number of resources necessary for completing labs as I need them.</li>
+        <li>To start with, I'm attaching two policies to this group:
+            <ul>
+                <li>IAMSelfManageServiceSpecificCredentials</li>
+                <li>IAMUserChangePassword</li></ul>
+        </li>
+        <li>Added the following tags to identify this account so I know it is to be used for training labs from a specific course.
+            <ul>
+                <li><strong>Key</strong>: Provider, <strong>Value</strong>: Digital Cloud Training</li>
+                <li><strong>Key</strong>: Instructor, <strong>Value</strong>: Neal Davis</li>
+                <li><strong>Key</strong>: Course, <strong>Value</strong>: AWS Certified Solutions Architect Associate </li>
+                <li><strong>Key</strong>: Platform, <strong>Value</strong>: Udemy</li>
+            </ul>
+        </li>
+        <li>This user will sign in through the custom link created under my room account: <a href="https://ajsnetiker.signin.aws.amazon.com/console" target="_blank">https://ajsnetiker.signin.aws.amazon.com/console</a></li>
+        </ul>
+        
+        <strong style="color: #FF0000;">Problem</strong><br>
+        After looking closely, I realized that I accidentally set my user name to adamdtc instead of adamdct (the c and the t are in the wrong order). It should be DCT, as in &quot;Digital Cloud Training&quot;.
+        <br><br>
+            <strong style="color: #FF0000;">Solution</strong><br>
+        I solved this problem by taking the following steps:
+            <ol>
+                <li>Ran <strong class="yellow-text">aws configure</strong> through the command line to update access keys to those of my new training account.</li>
+                <li>Attached the policy <em>IAMFullAccess</em> to the Training group, which includes <em>iam:UpdateUser</em>, a policy that allows me to change the user name of this account programatically.</li>
+                <li>Ran <strong class="yellow-text">aws iam update-user --user-name adamdtc --new-user-name adamdct</strong> to execute the name changee.</li>
+                <li>Detached the policy <em>IAMFullAccess</em> from the Training group to make sure full access was only temporary.</li>
+            </ol>
+    </div>
+</div>
+</body>
+</html>
