@@ -12,18 +12,22 @@
     <div id="title-bar">adam <span class="yellow-text">snetiker</span><br><span class="small-teal-text">Solutions Architect Portfolio</span></div>
     <img id="header-image" src="images/website-header.png">
     <div class="content-container">
-    <h1>CloudSkills Bootcamp Projects</h1><br>
+    <h1>CloudSkills Projects</h1><br>
     <h2>CloudNative DevOps Bootcamp</h2>
+    <br>
+     <h3>Week 1: DevOps Fundamental Skills</h3>
         <p class="service">Project 1: Getting Started with GitHub</p>
         <p>Since I've been working on this project for a while, I've already set up a <a href="https://github.com/adam-snetiker" target="_blank">GitHub account</a> and a repository called <a href="https://github.com/adam-snetiker/AdamOnAWS" target="_blank">AdamOnAWS</a>. This activity serves as a great introduction to version control, and it's nice to see contribution activity in my account.</p>
         
         <p>
         <b>Git Commands</b><br>
-            <code>git add <strong class="yellow-text">[file name]</strong> or <strong class="yellow-text">*</strong> or <strong class="yellow-text">*.extension</strong></code>
-            <br>
-            <code>git commit -m <strong class="yellow-text">"Message about new commit here."</strong></code>
-            <br>
-            <code>git push origin <strong class="yellow-text">[repository name]</strong></code>
+            <code style="background-color: #EEEEEE; padding-top: 4px; padding-bottom: 4px;">
+                git add <em>filename</em> or * or *.extension<br>
+                
+                git commit -m "Message about new commit here."<br>
+                
+                git push origin <em>repository name</em>
+            </code>
         </p>
         
         <p class="service">Project 2: Setting up Your First Azure Environment</p>
@@ -55,6 +59,49 @@
         
         <p class="service">Project 5: Setting up Your First GitHub Action</p>
         <p>Earlier, I set up a workflow to sync my repo with my S3 bucket. It wasn't working successfully, but it was exposing my access keys, so I disabled it. I'm looking forward to figuring this out so I can successfully sync my files to S3 every time a new change is pushed into GitHub.</p>
+        
+<br><br>
+        <h3>Week 2: Scripting Like a Developer</h3>
+        <p class="service">Project 1: Setting up a Dev Environment from Start to Finish</p>
+        <ul>
+        <li>Installed Visual Studio Code</li>
+        <li>Installed Python and PowerShell extensions. Had to download .vsix files and install these into VS Code manually.</li>
+            <li>Signed up for <strong class="yellow-text">GitHub Codespaces</strong> beta waitlist</li>
+        </ul>
+        
+        
+         <p class="service">Project 2: Reusable and Clean Python Code</p>
+       <p>In this project, I used Python to create an S3 bucket with the <strong class="yellow-text">Boto3</strong> library, which is used to access AWS resources. First, I attempted to install boto3 using the command  <code style="background-color: #EEEEEE; padding: 4px;">pip install boto3</code> in the terminal tab of VS Code. When running my code, I got an error message saying the module didn't exist, so I had to research a different way to solve the problem.
+        <br><br>
+        I found an alternative and set up the AWS SDK for Python using the following commands:<br><br> 
+            <code style="background-color: #EEEEEE; padding-top: 4px; padding-bottom: 4px;">
+                $ pip install virtualenv<br>
+                $ cd boto3<br>
+                $ virtualenv venv<br>
+                ...<br>
+                $ . venv/bin/activate<br>
+                $ python -m pip install -r requirements.txt<br>
+                $ python -m pip install -e .
+           </code>
+        <br><br>
+        This solved the first problem, but when I ran the code again I got an error saying the unspecified location constraint is not compatible with the endpoint to which the command was sent. After researching <em>this</em> problem, I solved it by adding the following to my code:
+        <br><br>
+        <code>
+           CreateBucketConfiguration = {<br>
+            &nbsp;&nbsp;&nbsp;'LocationConstraint': 'us-west-1'<br>
+           },</code>
+        <br><br>
+        After solving this problem as well, I was met with an access denied error. To fix this, I went back to the console and signed in under my root account. I then granted the <strong class="yellow-text">S3FullAccess</strong> policy to the IAM account I'm using to connect to AWS from my local machine. 
+        <br><br>
+        A quick look at the S3 bucket list confirms successful creation of a new bucket called <em>snetcloudnative</em>. I can now reuse this code any time I want to create a new s3 bucket by running the command <br>
+        <code style="background-color: #EEEEEE; padding: 4px;">python3 ./s3bucket.py <em>bucketname</em></code>
+    
+        
+         <p class="service">Project 3: Reusable and Clean PowerShell Code</p>
+         <p class="service">Project 4: Linting in PowerShell and Python</p>
+         <p class="service">Project 5: Testing in PowerShell and Python</p>
+         <p class="service">Project 6: Documenting Code</p>
+        
     </div>
 </div>
 </body>
