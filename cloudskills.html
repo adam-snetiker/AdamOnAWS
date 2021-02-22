@@ -86,7 +86,7 @@
         <br><br>
         This solved the first problem, but when I ran the code again I got an error saying the unspecified location constraint is not compatible with the endpoint to which the command was sent. After researching <em>this</em> problem, I solved it by adding the following to my code:
         <br><br>
-        <code>
+        <code style="background-color: #EEEEEE; padding: 4px;">
            CreateBucketConfiguration = {<br>
             &nbsp;&nbsp;&nbsp;'LocationConstraint': 'us-west-1'<br>
            },</code>
