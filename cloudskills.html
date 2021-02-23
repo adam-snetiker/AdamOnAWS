@@ -105,7 +105,7 @@
          Before I install the Azure CLI, it appears I have to install Xcode Developer tools  using the command <code style="background-color: #EEEEEE; padding: 4px;">xcode-select --install</code>. After that, and once I have a full clone of Homebrew, I'm able to
         I'm able to successfully install the <strong class="yellow-text">Azure CLI</strong> using <code style="background-color: #EEEEEE; padding: 4px;">brew update &amp;&amp; brew install azure-cli</code>.
             
-        <br><br>To begin, I installed powershell using the command  <code style="background-color: #EEEEEE; padding: 4px;">brew install --cask powershell</code> and verified that it's working with  <code style="background-color: #EEEEEE; padding: 4px;">pwsh</code>. This is also used to start the shell, which is necessary because otherwise I'd be running commands in Bash. In VS Code, it appears the default shell is zsh.
+        <br><br>To begin, I installed PowerShell using the command  <code style="background-color: #EEEEEE; padding: 4px;">brew install --cask powershell</code> and verified that it's working with  <code style="background-color: #EEEEEE; padding: 4px;">pwsh</code>. This is also used to start the shell, which is necessary because otherwise I'd be running commands in Bash. In VS Code, it appears the default shell is zsh.
         <br><br>
          When running my code, I ran into an error that said the module was not part of a cmdlet, script or file. Basically, PowerShell couldn't find the specific Azure CLI command I want to use, which is <code style="background-color: #EEEEEE; padding: 4px;">New-AzResourceGroup</code>. To troubleshoot the problem, here are the steps I took:
             <ul>
