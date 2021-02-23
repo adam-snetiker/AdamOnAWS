@@ -73,7 +73,7 @@
          <p class="service">Project 2: Reusable and Clean Python Code</p>
        <p>In this project, I used Python to create an S3 bucket with the <strong class="yellow-text">Boto3</strong> library, which is used to access AWS resources. First, I attempted to install boto3 using the command  <code style="background-color: #EEEEEE; padding: 4px;">pip install boto3</code> in the terminal tab of VS Code. When running my code, I got an error message saying the module didn't exist, so I had to research a different way to solve the problem.
         <br><br>
-        I found an alternative and set up the AWS SDK for Python using the following commands:<br><br> 
+        I found an alternative and set up the <strong class="yellow-text">AWS SDK</strong> for Python using the following commands:<br><br> 
             <code style="background-color: #EEEEEE; padding-top: 4px; padding-bottom: 4px;">
                 $ pip install virtualenv<br>
                 $ cd boto3<br>
@@ -95,9 +95,31 @@
         <br><br>
         A quick look at the S3 bucket list confirms successful creation of a new bucket called <em>snetcloudnative</em>. I can now reuse this code any time I want to create a new s3 bucket by running the command <br>
         <code style="background-color: #EEEEEE; padding: 4px;">python3 ./s3bucket.py <em>bucketname</em></code>
-    
         
          <p class="service">Project 3: Reusable and Clean PowerShell Code</p>
+        
+        <p>For this project, the task is to write a PowerShell script that creates a new <strong class="yellow-text">Azure resource group</strong>. Since I'm starting from scratch, I need to install both PowerShell and the Azure CLI.
+        <br><br>
+        In order to run Homebrew, I first had to convert the shallow clone to a full clone using the following commands:<br><br> <code style="background-color: #EEEEEE; padding: 4px;">git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core fetch --unshallow</code><br> <code style="background-color: #EEEEEE; padding: 4px;">git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask fetch --unshallow</code>
+        <br><br>
+         Before I install the Azure CLI, it appears I have to install Xcode Developer tools  using the command <code style="background-color: #EEEEEE; padding: 4px;">xcode-select --install</code>. After that, and once I have a full clone of Homebrew, I'm able to
+        I'm able to successfully install the <strong class="yellow-text">Azure CLI</strong> using <code style="background-color: #EEEEEE; padding: 4px;">brew update &amp;&amp; brew install azure-cli</code>.
+            
+        <br><br>To begin, I installed powershell using the command  <code style="background-color: #EEEEEE; padding: 4px;">brew install --cask powershell</code> and verified that it's working with  <code style="background-color: #EEEEEE; padding: 4px;">pwsh</code>. This is also used to start the shell, which is necessary because otherwise I'd be running commands in Bash. In VS Code, it appears the default shell is zsh.
+        <br><br>
+         When running my code, I ran into an error that said the module was not part of a cmdlet, script or file. Basically, PowerShell couldn't find the specific Azure CLI command I want to use, which is <code style="background-color: #EEEEEE; padding: 4px;">New-AzResourceGroup</code>. To troubleshoot the problem, here are the steps I took:
+            <ul>
+                <li>Looked up how to install a PowerShell module<li>
+                <li>Found the name of the correct module that contains the New-AzResourceGroup command</li>
+                <li>Ran a search for the module and installed it once it was found. The correct module for this project is <strong class="yellow-text">Az.Resources</strong>. The command I used to find and install the module is <code style="background-color: #EEEEEE; padding: 4px;">Find-Module -Name Az.Resources | Install-Module</code>.</li>
+                <li>Added <code style="background-color: #EEEEEE; padding: 4px;">Import-Module Az.Resources</code> to the top of my code to import the module.</li>
+        </ul>
+        <p>In order to successfully run the code, I had to run <code style="background-color: #EEEEEE; padding: 4px;">Connect-AzAccount</code>, which opened a browser tab so I could log in to Azure. Finally, after the connection was established, I ran <code style="background-color: #EEEEEE; padding: 4px;">New-ResourceGroup -rgName snetRG01 -location westus</code> to create a resource group called snetRG01 in the West US region.
+        <br><br>Last but not least, I was able to confirm successful creation of the resource group in the Azure console.</p>
+        
+                
+            </ul>
+        
          <p class="service">Project 4: Linting in PowerShell and Python</p>
          <p class="service">Project 5: Testing in PowerShell and Python</p>
          <p class="service">Project 6: Documenting Code</p>
