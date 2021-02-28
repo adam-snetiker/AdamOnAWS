@@ -60,7 +60,7 @@
         <p class="service">Project 5: Setting up Your First GitHub Action</p>
         <p>Earlier, I set up a workflow to sync my repo with my S3 bucket. It wasn't working successfully, but it was exposing my access keys, so I disabled it. I'm looking forward to figuring this out so I can successfully sync my files to S3 every time a new change is pushed into GitHub.</p>
         
-<br><br>
+<br>
         <h3>Week 2: Scripting Like a Developer</h3>
         <p class="service">Project 1: Setting up a Dev Environment from Start to Finish</p>
         <ul>
@@ -105,11 +105,12 @@
          Before I install the Azure CLI, it appears I have to install Xcode Developer tools  using the command <code style="background-color: #EEEEEE; padding: 4px;">xcode-select --install</code>. After that, and once I have a full clone of Homebrew, I'm able to
         I'm able to successfully install the <strong class="yellow-text">Azure CLI</strong> using <code style="background-color: #EEEEEE; padding: 4px;">brew update &amp;&amp; brew install azure-cli</code>.
             
-        <br><br>To begin, I installed PowerShell using the command  <code style="background-color: #EEEEEE; padding: 4px;">brew install --cask powershell</code> and verified that it's working with  <code style="background-color: #EEEEEE; padding: 4px;">pwsh</code>. This is also used to start the shell, which is necessary because otherwise I'd be running commands in Bash. In VS Code, it appears the default shell is zsh.
+        <br><br>To begin, I installed PowerShell using the command  <code style="background-color: #EEEEEE; padding: 4px;">brew install --cask powershell</code> and verified that it's working with  <code style="background-color: #EEEEEE; padding: 4px;">pwsh</code>. 
+        This is also used to start the shell, which is necessary because otherwise I'd be running commands in Bash. In VS Code, it appears the default shell is zsh.
         <br><br>
          When running my code, I ran into an error that said the module was not part of a cmdlet, script or file. Basically, PowerShell couldn't find the specific Azure CLI command I want to use, which is <code style="background-color: #EEEEEE; padding: 4px;">New-AzResourceGroup</code>. To troubleshoot the problem, here are the steps I took:
             <ul>
-                <li>Looked up how to install a PowerShell module<li>
+                <li>Looked up how to install a PowerShell module</li>
                 <li>Found the name of the correct module that contains the New-AzResourceGroup command</li>
                 <li>Ran a search for the module and installed it once it was found. The correct module for this project is <strong class="yellow-text">Az.Resources</strong>. The command I used to find and install the module is <code style="background-color: #EEEEEE; padding: 4px;">Find-Module -Name Az.Resources | Install-Module</code>.</li>
                 <li>Added <code style="background-color: #EEEEEE; padding: 4px;">Import-Module Az.Resources</code> to the top of my code to import the module.</li>
@@ -117,13 +118,65 @@
         <p>In order to successfully run the code, I had to run <code style="background-color: #EEEEEE; padding: 4px;">Connect-AzAccount</code>, which opened a browser tab so I could log in to Azure. Finally, after the connection was established, I ran <code style="background-color: #EEEEEE; padding: 4px;">New-ResourceGroup -rgName snetRG01 -location westus</code> to create a resource group called snetRG01 in the West US region.
         <br><br>Last but not least, I was able to confirm successful creation of the resource group in the Azure console.</p>
         
-                
-            </ul>
         
          <p class="service">Project 4: Linting in PowerShell and Python</p>
-         <p class="service">Project 5: Testing in PowerShell and Python</p>
-         <p class="service">Project 6: Documenting Code</p>
+        <p>This project is all about <strong class="yellow-text">linting</strong>, which means optimizing and cleaning up code so it follows best practices.
+        <br><br>
+            In Python, we start with <code style="background-color: #EEEEEE; padding: 4px;">pip install pylint</code> to install the linter. To begin cleaning up code, I ran <code style="background-color: #EEEEEE; padding: 4px;">pylint ./s3bucket.py</code> in the directory where my code is, and got my first round of results.
+            <br><br>
+            Each time pylint is run, it provides your code with a rating. My initial rating was <strong>3.08</strong>/10, but after making corrections I ended up wit ha rating of <strong>9.00</strong>/10. Some of the changes I made are:
+            <ul>
+                <li>Added an empty line at the bottom of the code</li>
+                <li>Placed <code style="background-color: #EEEEEE; padding: 4px;">import sys</code> <em>before</em> <code style="background-color: #EEEEEE; padding: 4px;">import boto3</code></li>
+                <li>Added document strings to both the module and functions to describe what they do. For example, my module docstring is <code style="background-color: #EEEEEE; padding: 4px;">"""This script creates an S3 bucket using the Boto3 library"""</code>.</li>
+                <li>Removed the <code style="background-color: #EEEEEE; padding: 4px;">bucket</code> variable from the <code style="background-color: #EEEEEE; padding: 4px;">s3_bucket.create_bucket</code> function because it was never used.</li>
+        </ul>
+            <br>
+        For PowerShell, I created a file called <em>linting.ps1</em> that will be run against my code in <em>New-ResourceGroup.ps1</em>. I then took the following steps:
+        <ul>
+        <li>In the PowerShell Integrated Console, I ran <code style="background-color: #EEEEEE; padding: 4px;">Install-Module -Name PSScriptAnalyzer -RequiredVersion 1.18.3</code> to install it.</li>
+        <li>Imported the script analyzer module into the code using <code style="background-color: #EEEEEE; padding: 4px;">Import-Module PSScriptAnalyzer</code>. I'm on a Mac, but was told that it's automatically included in Windows 10.</li>
+        <li>The entire linting script consists of one line of code: Imported it into the code using <code style="background-color: #EEEEEE; padding: 4px;">Invoke-ScriptAnalyizer -Path .</code>. This will analyze all scripts in the current directory.</li>
+        </ul>
+
         
+         <p class="service">Project 5: Testing in PowerShell and Python</p>
+        <p>While linting is one form of testing the cleanliness of code, unit testing is another form to make sure it works as expected. In this project, we ran unit tests on the Python script to create a new S3 bucket and the PowerShell script that creates a new resource group.</p>
+        Starting with PowerShell, the steps I took are as follows:
+        <ul>
+            <li>Created a new PowerShell script file called <em>New-ResourceGroup_test.ps1</em></li>
+            <li>Installed Pester by running  <code style="background-color: #EEEEEE; padding: 4px;">Install-Module -Name Pester -RequiredVersion 4.7.3</code></li>
+            <li>Run the test by using <code style="background-color: #EEEEEE; padding: 4px;">Invoke-Pester .\New-ResourceGroup_test.ps1</code> or by selecting the entire test function and selecting 'Run Selection' from the menu.
+            <li>Fixed code after observing failed test.</li>
+        </ul>
+    <p>The python tests go a little deeper and test the bucket name and region to make sure they both match the expected values and they're strings. To do this, I did the following:</p>
+        <ul>
+            <li>Import the python unittest package</li>
+            <li>Select code and choose 'Run Python File in Terminal' from the menu to perform the test</li>
+            <li>Observe results, which state that 4 tests were run and the status is OK.</li>
+        </ul>
+    
+         <p class="service">Project 6: Documenting Code</p>
+        Documenting code is important for develoeprs to do so others can understand it. When using GitHub especially, the README file gives visitors an idea of what's in the repository, how to contribute, and provides other information. It's written in markdown format, which consists of several different things.
+        <strong class="yellow-test">#</strong> is used for heading, similar to H1 - H6 tags in HTML. In fact, the number of pound signs correspond to the heading level, so:
+        <ul>
+            <li># = H1</li>
+            <li>## = H2</li>
+            <li>### = H3</li>
+            <li>#### = H4</li>
+            <li>##### = H5</li>
+            <li>###### = H6</li>
+        </ul>
+        
+        <p>As far as formatting goes, a <strong class="yellow-text">*</strong> on either side of a string is used for bold text and <strong class="yellow-text">_</strong> for italics.
+        <br><br>
+        GitHub has an excellent guide called <a href="https://guides.github.com/features/mastering-markdown/" target="_blank">Mastering Markdown</a> that contains the above syntax rules and more.
+        </p>
+        
+        <br>
+     <h3>Week 3: Infrastructure as Code</h3>
+        
+    <p><strong>Note: </strong> Script files and test result screenshots for all projects can be found in my <a href="https://github.com/adam-snetiker/cloudskills" target="_blank">cloudskills</a> repository.</p>
     </div>
 </div>
 </body>
