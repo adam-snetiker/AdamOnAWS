@@ -145,7 +145,7 @@
         Starting with PowerShell, the steps I took are as follows:
         <ul>
             <li>Created a new PowerShell script file called <em>New-ResourceGroup_test.ps1</em></li>
-            <li>Installed Pester by running  <code style="background-color: #EEEEEE; padding: 4px;">Install-Module -Name Pester -RequiredVersion 4.7.3</code></li>
+            <li>Installed Pester, a popular framework for various types of application testing, by running <code style="background-color: #EEEEEE; padding: 4px;">Install-Module -Name Pester -RequiredVersion 4.7.3</code></li>
             <li>Run the test by using <code style="background-color: #EEEEEE; padding: 4px;">Invoke-Pester .\New-ResourceGroup_test.ps1</code> or by selecting the entire test function and selecting 'Run Selection' from the menu.
             <li>Fixed code after observing failed test.</li>
         </ul>
@@ -175,7 +175,44 @@
         
         <br>
      <h3>Week 3: Infrastructure as Code</h3>
-        
+     <p class="service">Project 1: Building an ARM Template for Virtual Machine Deployment in Azure</p>
+     <p>ARM stands for <strong class="yellow-text">Azure Resource Manager</strong>. Templates are used to create resources via code instead of manually clicking in the Azure interface.
+        This is the process I followed to build my first one:
+        <ul>
+            <li>Install the extension called <em>Azure Resource Manager (ARM) Tools</em> in Visual Studio Code.
+                This extension allows you to create template snippets on the fly that will be deployed via the Azure CLI.</li>
+            <li>Created a new file called <em>template.json</em>. Thanks to the extension, VS code automatically recognizes it as a JSON file. To start, we begin typing 'arm' and select the first item, 'arm!' from the menu to create a generic template, which contains the following sections:
+                <ul>
+                    <li>$schema</li>
+                    <li>parameters</li>
+                    <li>functions</li>
+                    <li>variables</li>
+                    <li>resources</li>
+                    <li>outputs</li>
+                </ul></li>
+            <li>In the resources section, I began typing 'arm' again and selected 'arm-vm-ubuntu' from the list to automatically generate an Ubuntu Linux virtual machine. I then changed the default name, <em>ubuntuVM1</em>, to <em>ajsnetVM1</em> to make it globally unique.</li>
+            <li>In the parameters section, typing 'arm' brings up an option to create a new-parameter, which generates a snippet containing a type and metadata such as a description. I named the paramter 'adminPassword' and set the descripton to 'Administrator Password'. Further down in the resources section under osProfile, I then set adminPassword to <code style="background-color: #EEEEEE; padding: 4px;">"[parameters('adminPassword')]"</code>. The list of parameters is available thanks to the ARM extension for VS code. </li>
+            <li>In the output section, I want to output the public IP and Fully Qualified Domain Name of the new virtual machine using <code style="background-color: #EEEEEE; padding: 4px;">"[reference(resourceId('Microsoft.Network/publicIPAddresses', 'ajsnetVM1-PublicIP')).dnsSettings.fqdn]"</code></li>
+            <li>Once complete, I entered a powershell terminal and logged into Azure using <code style="background-color: #EEEEEE; padding: 4px;">az login</code>.</li>
+            <p>
+            <strong>Note:</strong> If you have trouble logging in, you may have to specify your tenant ID, which can be found by searching 'tenant properties' in the Azure portal. Copy the Tenant ID, then run <code style="background-color: #EEEEEE; padding: 4px;">az login --tenant <em>tenantID</em></code>.</p>
+            <li>Once logged in, I ran <code style="background-color: #EEEEEE; padding: 4px;">az deployment group create --resource-group snetRG01 --template-file ./template.json -p adminPassword="********"</code></li>
+            <li>Finally, I can verify successful creation of the VM by visiting the Virtual machines service in my Azure console. The VM, along with all of the other resources that were provisioned, are listed in the <em>snetRG01</em>resource group.</li>
+        </ul> 
+
+</p> 
+
+
+
+
+     <p class="service">Project 2: Building a Terraform Module to Create a Virtual Network in AWS</p>
+     <p class="service">Project 3: Testing Infrastructure-as-Code</p>
+     <p class="service">Project 4: Intro to Azure Bicep</p>
+<br>
+     <h3>Week 4: GitHub and Source Control</h3>
+     <p class="service">Project 1: VS Code with Git and GitHub</p>
+     <p class="service">Project 2: Working Through Push Conflicts</p>
+     <p class="service">Project 3: Contributing to an Open Source Project</p>
     <p><strong>Note: </strong> Script files and test result screenshots for all projects can be found in my <a href="https://github.com/adam-snetiker/cloudskills" target="_blank">cloudskills</a> repository.</p>
     </div>
 </div>
